@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{event.title}}
+{% endblock %}
+
+{% block navbar %}
+<div class="navbar-brand">
+    <h2>{{event.title}}</h2>
+    <div>
+        {{event.date}}
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+  
+  {% if not edit %}
+  <div class="col-lg-3 col-md-12 py-sm-3">
+    <div>
+      <button class="btn w-100 text-left m-0" data-toggle="collapse" 
+              data-target="#timesCollapse" aria-expanded="false" >
+              <i class="far fa-clock"></i>
+              Times
+      </button>
+
+      <div class="collapse show" id="timesCollapse">
+        <div class="card card-body">
+            {% for time in event.get_times %}
+              {{time}}
+            {% endfor %}
+          <a href="#" class="btn schedule-btn bg-transparent">Add +</a>
+        </div>
+      </div>
+    </div>
+
+    <div>
+        <button class="btn w-100 text-left m-0" data-toggle="collapse" 
+                data-target="#filesCollapse" aria-expanded="false" >
+                <i class="fas fa-paperclip"></i>
+                Files
+        </button>
+        <div class="collapse" id="filesCollapse">
+          <div class="card card-body">
+            <a href="#" class="btn schedule-btn bg-transparent">Add +</a>
+          </div>
+        </div>
+    </div>
+
+  </div>
+
+
+
+        
+  <div class="col">
+    <ul class="nav nav-tabs">
+      <li class="nav-item"><a class="nav-link active" href="#order" data-toggle="tab">Order</a></li>
+      <li class="nav-item"><a class="nav-link" href="#teams" data-toggle="tab">Teams</a></li>
+      <li class="nav-item"><a class="nav-link" href="#rehearse" data-toggle="tab">Rehearse</a></li>
+    </ul>
+    
+    <div class="tab-content">
+        <div class="tab-pane active " id="order">
+            {% include 'components/order.html' %}
+        </div>
+        <div class="tab-pane" id="teams">
+            {% include 'components/teams.html' %}
+        </div>
+        <div class="tab-pane" id="rehearse">
+          rehearse
+        </div>
+    </div>
+  </div>
+      
+  {% else %}
+  <div class="col p-4">
+    {%  include 'components/OrderItemForm.html' %}
+    <a href="{% url 'event' id=event.id %}" type="button" class="btn btn-secondary">Cancel</a>
+    <button type="submit" form="orderItemForm" class="btn btn-primary">Save</button>
+  </div>
+
+  {% endif %}
+</div>
+{% endblock %}

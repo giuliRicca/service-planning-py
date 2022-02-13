@@ -1,0 +1,30 @@
+<form id="orderItemForm" method="post">
+    {% csrf_token %}
+    <div class="row">
+        <div class="form-group col-3">
+            <label for="minutes" class="control-label">Minutes</label>
+            {{form.minutes}}
+        </div>
+        <span class="input-addon mt-3"><br>:</span>
+        <div class="form-group col-3">
+            <label for="seconds" class="control-label">Seconds</label>
+            {{form.seconds}}
+        </div>
+        <div class="form-group col">
+            <label for="item_type" class="control-label">Type</label>
+            {{form.item_type}}
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="title" class="control-label">Title</label>
+        {{form.title}}
+    </div>
+    <div class="form-group">
+        <label for="person" class="control-label" >Person</label>
+        {{form.person}}
+    </div>
+    <div class="form-group">
+        <label for="description" class="control-label" >Description</label>
+        {{form.description}}
+    </div>
+</form>

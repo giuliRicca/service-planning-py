@@ -1,0 +1,5 @@
+/* Active class for header links */
+.nav-item.active{
+    background-color: rgba(36, 36, 36, 0.144);
+    border-radius: 60px
+}

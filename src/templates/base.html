@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        PLANNING - 
+        {% block title %}
+        {% endblock %}
+    </title>
+    {# Load Bootstrap Library #}
+    {% load bootstrap4 %}
+
+    {# Link Bootsrap css #}
+    {% bootstrap_css %}
+
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/core.css' %}">
+
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/8464ab5a04.js" crossorigin="anonymous"></script>
+</head>
+<body class="bg-light">
+    
+    <!-- Header -->
+    {% include 'components/header.html' %}
+
+    <!-- Inner Navbar -->
+    <nav class="navbar navbar-dark" 
+    style="background-color: #8DB95B">
+        {% block navbar %}
+        {% endblock %}
+    </nav>  
+
+    <!-- Main content -->
+    <div class="container-fluid">
+            {% block content %}
+            {% endblock %}
+    </div>
+    
+    {# Load Bootstrap JS and JQuery #}
+    {% bootstrap_javascript jquery='full' %}
+
+    {% block extra_js %}
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,57 @@
+<header>
+    <nav class="navbar navbar-expand-sm navbar-dark" 
+    style="background-color: #6A9639">
+        <a href="{% url 'schedule' %}" class="col-xs-4 navbar-brand">
+            Services
+        </a>
+        {% if user.is_authenticated %}
+        <ul class=" col-xs-4 navbar-nav mx-auto">
+            <li class="nav-item
+            {% if request.resolver_match.url_name == 'schedule' %}active{% endif %}
+            "><a href="{% url 'schedule' %}" class="nav-link">
+                My Schedule
+            </a></li>
+            <li class="nav-item
+            {% if request.resolver_match.url_name == 'plans' %}active{% endif %}
+            "><a href="{% url 'plans' %}" class="nav-link">
+                Plans
+            </a></li>
+            <li class="nav-item"><a href="" class="nav-link
+                {% if request.resolver_match.url_name == 'songs' %}active{% endif %}
+                ">
+                Songs
+            </a></li>
+            <li class="nav-item"><a href="#" class="nav-link
+                {% if request.resolver_match.url_name == 'media' %}active{% endif %}
+                ">
+                Media
+            </a></li>
+            <li class="nav-item"><a href="#" class="nav-link
+                {% if request.resolver_match.url_name == 'people' %}active{% endif %}
+                ">
+                People
+            </a></li>
+        </ul>
+        
+        <div class="col-xs-4">
+            <div class="dropdown">
+
+                <button id="profile" type="button" 
+                class="btn rounded-circle btn-dark"
+                data-toggle="dropdown" 
+                aria-haspopup="true" aria-expanded="false"
+                >
+                        <i class="fas fa-user"></i>
+                </button>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profile">
+                    <a href="" class="dropdown-item">{{ user.full_name }}</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="{% url 'logout' %}" class="dropdown-item">
+                        <i class="fas fa-sign-out-alt"></i>    Log Out
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+      </nav>
+</header>

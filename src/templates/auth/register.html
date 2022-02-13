@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Register
+{% endblock %}
+
+{% block content %}
+ <div class="col">
+    <h2>Register Page</h2>
+    <form method="post">
+        {% csrf_token %}
+
+        <!-- Render all fields from form -->
+        {% for field in form %}
+        <div class="form-group">
+            <label for="email">{{ field.label }}: </label>
+            {{field}}
+        </div>
+        {% endfor %}
+
+        <button type="submit" class="btn btn-success w-100">Register</button>
+        <p>Already have an account? Log in <span><a href="{% url 'login' %}" >here</a></span></p>
+    </form>
+ </div>
+
+{% endblock %}

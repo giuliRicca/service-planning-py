@@ -1,0 +1,17 @@
+<div class="row">
+    {{event.service_type.team_set}}
+    {% for team in event.service_type.teams.all %}
+        <div class="col-md-4">
+            <div class="card p-2 mb-2">
+                <div class="card-body">{{team.name}}</div>
+                <div class="card-text">
+                    <ul>
+                        {% for user in team.user_set.all %}
+                        <li>{{user}}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>

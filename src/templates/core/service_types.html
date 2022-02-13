@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Service Types
+{% endblock %}
+
+{% block content %}
+
+    <div class="col-8 mx-auto mt-4">
+        <h2>Add a Service Type</h2>
+        <p class="text-muted">
+            A Service Type is a type of service that happens at your church. They usually recur weekly and are named using the main name you communicate to your congregation.
+        </p>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                {{form.name.label}}
+                {{form.name}}
+            </div>
+            <div class="form-group">
+                {{form.recur.label}}
+                {{form.recur}}
+            </div>
+            <div class="form-group">
+                {{form.times.label}}
+                <div class="input-group">
+                    {{form.times}}
+                    <div class="input-group-append">
+                        <a type="button" href="" class="btn btn-success">+</a>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                {{form.teams.label}}
+                <div class="input-group">
+                    {{form.teams}}
+                    <div class="input-group-append">
+                        <a type="button" href="" class="btn btn-success">+</a>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn schedule-btn">Save</button>
+        </form>
+        
+    </div>
+
+{% endblock %}

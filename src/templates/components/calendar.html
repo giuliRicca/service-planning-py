@@ -1,0 +1,16 @@
+{{ calendar|safe }}
+
+<div class="col-12 order-2">
+    <h4 class="text-muted">Upcoming</h4>
+    <ul class="upcomming-events">
+        {% if events %}
+            {% for event in events %}
+                <li><a href="{% url 'event' id=event.id %}">
+                    {{ event.title }}
+                </a></li>
+            {% endfor %}
+        {% else %}
+        <li class="text-muted">No upcoming plans or blockout dates</li>
+        {% endif %}
+    </ul>
+</div>

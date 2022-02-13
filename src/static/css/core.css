@@ -1,0 +1,73 @@
+.calendar{
+    table-layout: fixed;
+}
+
+.week{
+    text-align: center;
+}
+
+.week > .active{
+    background-color: rgba(84, 201, 90, 0.541);
+}
+.upcomming-events > li{
+    border-left: 2px solid;
+    padding: .5rem;
+    list-style: none;
+}
+
+.service-types > li{
+    list-style: none;
+    padding:0;
+    margin: 0;
+}
+
+.service-types > li > a{
+    background-color: rgb(218, 216, 216);
+}
+
+
+
+.schedule-btn{
+    border: 2px solid rgb(233, 233, 233);
+    background-color: #fff;
+    color: #8DB95B;
+    transition: transform .2s ease;
+}
+
+.schedule-btn:hover,
+.schedule-btn:active{
+    color: #8DB95B;
+    -webkit-transform: scale(1.02);
+    -ms-transform: scale(1.02);
+    transform: scale(1.02);
+}
+
+.nav-tabs > .nav-item > a{
+    color: #888888;
+}
+.bg-gray{
+    background:#e9e9e9 ;
+}
+
+.delete-item,
+.edit-item{
+    color: #000;
+}
+
+.delete-item:hover,
+.delete-item:focus{
+    color: rgb(197, 63, 63);
+}
+
+.edit-item:hover,
+.edit-item:focus{
+    color: rgb(27, 137, 201);
+}
+
+.Header{
+    background-color: rgb(218, 218, 218);
+}
+
+textarea{
+    height: 100px;
+}

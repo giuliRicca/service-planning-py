@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Schedule
+{% endblock %}
+
+{% block navbar %}
+<div class="navbar-brand">
+    My Schedule
+</div>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-5 bg-white d-none d-md-block">
+            <div class="row">
+                {% include 'components/calendar.html' %}
+            </div>
+        </div>
+
+        <div class="col py-4 px-3">
+            <div class="row">
+                <button class="btn btn-lg schedule-btn col-lg">
+                    <i class="fas fa-calendar-times"></i>
+                    Add Blockout Dates
+                </button>
+                
+                <button class="btn btn-lg schedule-btn col-lg">
+                    <i class="fas fa-envelope"></i>
+                    My Messages
+                </button>
+    
+                <button class="btn btn-lg schedule-btn col-lg">
+                    <i class="fas fa-user"></i>
+                    Email My Leader
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

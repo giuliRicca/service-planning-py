@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% block title %}
+Plans
+{% endblock %}
+
+{% block navbar %}
+<div class="navbar-brand">
+    Plans
+</div>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        {% if not edit %}
+        <div class="col-5 bg-white d-none d-md-block">
+            <div class="row">
+
+                {% include 'components/calendar.html' %}
+
+            </div>
+        </div>
+
+        <div class="col p-4">
+            <div class="row">
+                <div class="col-12 d-flex justify-content-between">
+                    <h5>Service Types:</h5>
+
+                    <a href="{% url 'new_service_type' %}" class="btn schedule-btn bg-transparent">Add +</a>
+                </div>
+                
+                <div class="col">
+                    <ul class="service-types p-0">
+                        {% for service_type in service_types %}
+                            <li class="mb-2">
+                                <button class="btn btn-secondary w-100 text-left" type="button" data-toggle="collapse" 
+                                data-target=#{{service_type.identifier}} aria-expanded="false" 
+                                aria-controls={{service_type.identifier}}>
+                                    {{service_type.name}}
+                                  </button>
+                                <div class="collapse" id={{service_type.identifier}}>
+                                    <div class="card card-body p-0">
+                                      <ul class="list-group">
+                                            {% if service_type.get_events %}
+
+                                                {% for event in service_type.get_events %}
+                                                    <li class="list-group-item d-flex justify-content-between 
+                                                    {% if not event.is_active %} bg-warning  {% endif %}"> 
+                                                        <a href="{% url 'event' id=event.id %}">
+                                                            {{event.title}}
+                                                        </a>
+                                                        <div>
+                                                            {{event.date}}
+
+                                                            <a href="{% url 'delete' model=event.model_name id=event.id %}"
+                                                            onclick="return confirm('Are you sure?')"
+                                                            class="delete-item ml-1">
+                                                                <i class="fa-solid fa-trash"></i>
+                                                            </a>
+                                                            <a href="{% url 'add_edit_event' id=event.id %}"
+                                                            class="edit-item mx-1">
+                                                                <i class="fa-solid fa-edit"></i>
+                                                            </a>
+                                                        </div>
+                                                    </li>
+                                                {% endfor %}
+
+                                            {% else %}
+                                                <li class="list-group-item text-muted">
+                                                    There are no events
+                                                </li>
+                                            {% endif %}
+                                      </ul>
+                                      <a href="{% url 'add_edit_event' %}" class="btn schedule-btn bg-transparent">Add +</a>
+                                    </div>
+                                  </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        
+        {% endif %}
+    </div>
+
+{% endblock %}
