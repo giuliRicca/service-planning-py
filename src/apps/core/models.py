@@ -76,6 +76,10 @@ class EventOrder(models.Model):
     def __str__(self):
         return str(self.event) + ": Order"
 
+    def get_items(self):
+        items = self.orderitem_set.all()
+        return items
+
     @property
     def total_length(self):
         items = self.orderitem_set.all()

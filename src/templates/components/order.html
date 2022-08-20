@@ -4,10 +4,14 @@
             <th class="col-2" >Length</th>
             <th class="col-6">Title</th>
             <th class="col-2">Person</th>
-            <th class="col-2">
+            <th class="col">
                 <a type="button" class="btn schedule-btn bg-transparent" 
                 data-toggle="modal" data-target="#itemForm">
                     Add
+            </a>
+            </th>
+            <th class="col">
+                <a href="{% url 'export_order_csv' id=event.eventorder.id %}" class="btn schedule-btn bg-transparent">Export</a>
             </a>
             </th>
         </tr>

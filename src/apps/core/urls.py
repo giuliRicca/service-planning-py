@@ -11,5 +11,6 @@ urlpatterns = [
     path("delete/<str:model>/<int:id>/", views.delete_view, name='delete'),
     path("plans/edit_item/<int:item_id>/", views.edit_item_view, name='edit_item'),
     path("service_types/add/", views.service_types_add, name='new_service_type'),
+    path('export/csv/<int:id>', views.export_order_csv, name='export_order_csv'),
     path("auth/", include('apps.auth.urls')),
 ]

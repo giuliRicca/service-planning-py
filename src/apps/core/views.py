@@ -1,11 +1,12 @@
 # apps/core/views.py
+import csv
 from datetime import timedelta
 from django.apps import apps
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
 from apps.core.utils import PlansCalendar
-from apps.core.models import OrderItem, ServiceType, Event
+from apps.core.models import OrderItem, ServiceType, Event, EventOrder
 from apps.core.forms import OrderItemForm, ServiceTypeForm, EventForm
 
 
@@ -117,3 +118,18 @@ def delete_view(request, model, id):
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
 
+@login_required(login_url='login')
+def export_order_csv(request, id):
+    order = get_object_or_404(EventOrder, pk=id)
+    # if order is not found redirect to previous page
+    if not order: return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+    # if exists then...
+    order_items = order.get_items().values_list('length', 'title', 'description', 'person', 'item_type')
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="users.csv"'
+    writer = csv.writer(response)
+    writer.writerow(['length', 'title', 'description', 'person', 'item_type'])
+    for order_item in order_items:
+        writer.writerow(order_item)
+        
+    return response
